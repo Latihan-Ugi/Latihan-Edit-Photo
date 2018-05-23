@@ -15,10 +15,7 @@
             min-height: 400px;
             margin: 15px 2px 15px 2px;
         }
-        .menu-editor {
-            margin-top: 15px;
-        }
-        .tambah-text-row, .ganti-produk-row {
+        .tambah-text-row, .ganti-produk-row, .masukan-ke-keranjang-row {
             margin-top: 15px;
         }
         .preview-warna {
@@ -118,7 +115,28 @@
 
                         <!-- Tambah Ke Keranjang -->
                         <div class="tab-pane fade show active" id="tambahkekeranjang" role="tabpanel" aria-labelledby="tambahkekeranjang-tab">
-                            Tambah Ke Keranjang
+                            <div class="row masukan-ke-keranjang-row">
+                                <div class="col">
+                                    <h3 id="nama-produk"></h3>
+                                    <hr>
+                                    <span id="harga-produk" style="color:#f25c27;font-size: 20px;font-weight: 500;"></span>
+                                    <br>
+                                    <div class="warna" style="margin-top: 15px">
+                                        <span>Pilih Warna : </span><span id="nama-warna" style="font-size: 13px;">Merah</span>
+                                        <div class="pilihan-warna" style="margin-top: 5px;">
+                                            <div class="warna" style="display:inline-table; height: 35px; width: 35px; background: red;border-radius: 50%;border:1px solid #000;"></div>
+                                            <div class="warna" style="display:inline-table; height: 35px;width: 35px;background: blueviolet;border-radius: 50%;border:1px solid #000;"></div>                                        
+                                            <div class="warna" style="display:inline-table; height: 35px;width: 35px;background: brown;border-radius: 50%;border:1px solid #000;"></div>                                                                                                                        
+                                        </div>
+                                    </div>
+                                    <div class="ukuran" style="margin-top: 15px">
+                                        <span>Pilih Ukuran : </span>
+                                        <div class="pilihan-ukuran" style="margin-top: 5px">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Ganti Produk -->
@@ -204,6 +222,8 @@
             $.getJSON( "http://latihan-edit-photo/data-json/kaos.json", function( data ) {
 
                 // console.log(data.produk[0].warna_baju[0].image[0].depan)
+                $("#nama-produk").text(data.produk[0].nama_produk);
+                $("#harga-produk").text(data.produk[0].harga_produk);
 
                 $( "<img>", {
                     "src": data.produk[0].warna_baju[0].image[0].depan

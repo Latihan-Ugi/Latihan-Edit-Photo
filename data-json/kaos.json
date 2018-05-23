@@ -39,7 +39,8 @@
                     ],
                     "ukuran" : "M,L,XL,2XL"
                 }
-            ] 
+            ],
+            "harga_produk" : "Rp. 90.000" 
         },
         {
             "nama_produk" : "Kaos Pria Two-Tone",
@@ -80,7 +81,8 @@
                     ],
                     "ukuran" : "M,L,XL,2XL"
                 }
-            ] 
+            ],
+            "harga_produk" : "Rp. 80.000"  
         }
     ]
 
