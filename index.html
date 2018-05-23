@@ -45,8 +45,18 @@
             padding-bottom: 10px;
         }
 
-        .depan {
+        .depan img, .belakang img {
+            width: 100px; 
+            height: auto;
+        }
+
+        .depan:hover, .belakang:hover {
+            cursor: pointer;
+        }
+        
+        .active-view {
             border:1px solid #000;
+            cursor: default !important;
         }
     </style>
     <link rel="stylesheet" href="js/color-picker/color-picker.min.css">
@@ -64,12 +74,12 @@
                     <div class="container">
                     <div class="row">
                         <div class="col"></div>
-                        <div class="depan col">
-                            <img src="images/kaos/kaos1-putih-front.jpg" style="width: 100px; height: auto;">
+                        <div class="depan col active-view" id="depan">
+                            <!-- <img src="images/kaos/kaos1-putih-front.jpg"> -->
                             <span style="padding-left: 25px;">Depan</span>
                         </div> 
-                        <div class="belakang col">
-                            <img src="images/kaos/kaos1-putih-back.jpg" style="width: 100px; height: auto;">
+                        <div class="belakang col" id="belakang">
+                            <!-- <img src="images/kaos/kaos1-putih-back.jpg"> -->
                             <span style="padding-left:18px;">Belakang</span>
                         </div>
                         <div class="col"></div>
@@ -192,11 +202,42 @@
     <script>
         $('document').ready(function() {
             $.getJSON( "http://latihan-edit-photo/data-json/kaos.json", function( data ) {
-                console.log(data.produk[0].warna_baju[0].image[0].depan)
+
+                // console.log(data.produk[0].warna_baju[0].image[0].depan)
+
                 $( "<img>", {
                     "src": data.produk[0].warna_baju[0].image[0].depan
                 }).appendTo( "#img-produk" );
-            })
+
+                 $( "<img>", {
+                    "src": data.produk[0].warna_baju[0].image[0].belakang
+                }).appendTo( "#belakang" );
+
+                 $( "<img>", {
+                    "src": data.produk[0].warna_baju[0].image[0].depan
+                }).appendTo( "#depan" );
+
+                $("#depan").click(function(){
+                    // console.log("depan");
+                    $('.belakang').removeClass('active-view');
+                    $('.depan').addClass('active-view');
+                    $( "#img-produk > img" ).remove();
+                    $( "<img>", {
+                        "src": data.produk[0].warna_baju[0].image[0].depan
+                    }).appendTo( "#img-produk" );
+                });
+
+                $("#belakang").click(function(){
+                    // console.log("belakang");
+                    $('.depan').removeClass('active-view');
+                    $('.belakang').addClass('active-view');
+                    $( "#img-produk > img" ).remove();
+                    $( "<img>", {
+                        "src": data.produk[0].warna_baju[0].image[0].belakang
+                    }).appendTo( "#img-produk" );
+                });
+
+            });
         })
     </script>
 
