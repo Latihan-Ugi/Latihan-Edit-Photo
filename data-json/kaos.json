@@ -9,10 +9,11 @@
                     "warna_image" : "",
                     "image" : [
                         {
-                            "depan" : "../kaos/kaos1-putih-front.jpg",
-                            "belakang" : "../kaos/kaos1-putih-back.jpg"
+                            "depan" : "../images/kaos/kaos1-putih-front.jpg",
+                            "belakang" : "../images/kaos/kaos1-putih-back.jpg"
                         }
-                    ]
+                    ],
+                    "ukuran" : "M,L,XL,2XL"
                 },
                 {
                     "nama_warna" : "Hitam",
@@ -20,10 +21,11 @@
                     "warna_image" : "",
                     "image" : [
                         {
-                            "depan" : "../kaos/kaos1-hitam-front.jpg",
-                            "belakang" : "../kaos/kaos1-hitam-back.jpg"
+                            "depan" : "../images/kaos/kaos1-hitam-front.jpg",
+                            "belakang" : "../images/kaos/kaos1-hitam-back.jpg"
                         }
-                    ]
+                    ],
+                    "ukuran" : "M,L,XL"
                 },
                 {
                     "nama_warna" : "Hijau Army",
@@ -31,10 +33,11 @@
                     "warna_image" : "",
                     "image" : [
                         {
-                            "depan" : "../kaos/kaos1-hijau_army-front.jpg",
-                            "belakang" : "../kaos/kaos1-hijau_army-back.jpg"
+                            "depan" : "../images/kaos/kaos1-hijau_army-front.jpg",
+                            "belakang" : "../images/kaos/kaos1-hijau_army-back.jpg"
                         }
-                    ]
+                    ],
+                    "ukuran" : "M,L,XL,2XL"
                 }
             ] 
         },
@@ -44,35 +47,38 @@
                 {
                     "nama_warna" : "Hitam Misty",
                     "warna" : "",
-                    "warna_image" : "../kaos/warna-kaos2/hitam-misty.jpg",
+                    "warna_image" : "../images/kaos/warna-kaos2/hitam-misty.jpg",
                     "image" : [
                         {
-                            "depan" : "../kaos/kaos2-putih-front.jpg",
-                            "belakang" : "../kaos/kaos2-putih-back.jpg"
+                            "depan" : "../images/kaos/kaos2-putih-front.jpg",
+                            "belakang" : "../images/kaos/kaos2-putih-back.jpg"
                         }
-                    ]
+                    ],
+                    "ukuran" : "M,L,XL,2XL"
                 },
                 {
                     "nama_warna" : "Abu Misty Muda",
                     "warna" : "",
-                    "warna_image" : "../kaos/warna-kaos2/abu-misty-muda.jpg",
+                    "warna_image" : "../images/kaos/warna-kaos2/abu-misty-muda.jpg",
                     "image" : [
                         {
-                            "depan" : "../kaos/kaos2-abu_misty_muda-front.jpg",
-                            "belakang" : "../kaos/kaos2-abu_misty_muda-back.jpg"
+                            "depan" : "../images/kaos/kaos2-abu_misty_muda-front.jpg",
+                            "belakang" : "../images/kaos/kaos2-abu_misty_muda-back.jpg"
                         }
-                    ]
+                    ],
+                    "ukuran" : "M,L,XL,2XL"
                 },
                 {
                     "nama_warna" : "Biru Misty",
                     "warna" : "",
-                    "warna_image" : "../kaos/warna-kaos2/biru-misty.jpg",
+                    "warna_image" : "../images/kaos/warna-kaos2/biru-misty.jpg",
                     "image" : [
                         {
-                            "depan" : "../kaos/kaos2-biru_misty-front.jpg",
-                            "belakang" : "../kaos/kaos2-biru_misty-back.jpg"
+                            "depan" : "../images/kaos/kaos2-biru_misty-front.jpg",
+                            "belakang" : "../images/kaos/kaos2-biru_misty-back.jpg"
                         }
-                    ]
+                    ],
+                    "ukuran" : "M,L,XL,2XL"
                 }
             ] 
         }

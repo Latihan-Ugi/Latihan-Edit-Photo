@@ -30,8 +30,23 @@
             margin-bottom: 3px;
             border:1px solid #000;
         }
+
         .preview-warna:hover {
             cursor: pointer;
+        }
+
+        #img-produk img {
+            height: auto; 
+            width: 450px;
+        }
+        
+        .depan, .belakang {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .depan {
+            border:1px solid #000;
         }
     </style>
     <link rel="stylesheet" href="js/color-picker/color-picker.min.css">
@@ -41,11 +56,28 @@
         <div class="row">
             <div class="col-md-auto image">
                 <div id="wrap-canvas">
-                    <img src="images/aqXeYGBKQnW6BDa2WQ2n.png" style="height: auto; width: 450px;">
+                    <div id="img-produk"></div>
+                    <!-- <img src="images/aqXeYGBKQnW6BDa2WQ2n.png"> -->
                     <canvas id="canvas" style="z-index: 9999 !important;position: relative;position: absolute;top:60px;left:135px;width: 195px;height: 280px;"></canvas>
                 </div>
+                <div class="posisi" style="margin-top:15px;">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="depan col">
+                            <img src="images/kaos/kaos1-putih-front.jpg" style="width: 100px; height: auto;">
+                            <span style="padding-left: 25px;">Depan</span>
+                        </div> 
+                        <div class="belakang col">
+                            <img src="images/kaos/kaos1-putih-back.jpg" style="width: 100px; height: auto;">
+                            <span style="padding-left:18px;">Belakang</span>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-7 editor border border-primary">
+            <div class="col-7 editor">
                 <div class="menu-editor">
 
                     <!-- Tabs Menu Editor -->
@@ -138,7 +170,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- <script src="js/jquery-2.0.2.min.js"></script> -->
+    <script src="js/jquery-2.0.2.min.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
@@ -156,6 +188,16 @@
             document.getElementById("color-picker").value = '#' + color;
             $("#warna-font").css({"background":"#" +color});
         });
+    </script>
+    <script>
+        $('document').ready(function() {
+            $.getJSON( "http://latihan-edit-photo/data-json/kaos.json", function( data ) {
+                console.log(data.produk[0].warna_baju[0].image[0].depan)
+                $( "<img>", {
+                    "src": data.produk[0].warna_baju[0].image[0].depan
+                }).appendTo( "#img-produk" );
+            })
+        })
     </script>
 
     <script>
