@@ -1,0 +1,81 @@
+{
+    "produk" : [
+        {
+            "nama_produk" : "Kaos Pria",
+            "warna_baju" : [
+                {
+                    "nama_warna" : "Putih",
+                    "warna" : "#ffffff",
+                    "warna_image" : "",
+                    "image" : [
+                        {
+                            "depan" : "../kaos/kaos1-putih-front.jpg",
+                            "belakang" : "../kaos/kaos1-putih-back.jpg"
+                        }
+                    ]
+                },
+                {
+                    "nama_warna" : "Hitam",
+                    "warna" : "#000000",
+                    "warna_image" : "",
+                    "image" : [
+                        {
+                            "depan" : "../kaos/kaos1-hitam-front.jpg",
+                            "belakang" : "../kaos/kaos1-hitam-back.jpg"
+                        }
+                    ]
+                },
+                {
+                    "nama_warna" : "Hijau Army",
+                    "warna" : "#1b2616",
+                    "warna_image" : "",
+                    "image" : [
+                        {
+                            "depan" : "../kaos/kaos1-hijau_army-front.jpg",
+                            "belakang" : "../kaos/kaos1-hijau_army-back.jpg"
+                        }
+                    ]
+                }
+            ] 
+        },
+        {
+            "nama_produk" : "Kaos Pria Two-Tone",
+            "warna_baju" : [
+                {
+                    "nama_warna" : "Hitam Misty",
+                    "warna" : "",
+                    "warna_image" : "../kaos/warna-kaos2/hitam-misty.jpg",
+                    "image" : [
+                        {
+                            "depan" : "../kaos/kaos2-putih-front.jpg",
+                            "belakang" : "../kaos/kaos2-putih-back.jpg"
+                        }
+                    ]
+                },
+                {
+                    "nama_warna" : "Abu Misty Muda",
+                    "warna" : "",
+                    "warna_image" : "../kaos/warna-kaos2/abu-misty-muda.jpg",
+                    "image" : [
+                        {
+                            "depan" : "../kaos/kaos2-abu_misty_muda-front.jpg",
+                            "belakang" : "../kaos/kaos2-abu_misty_muda-back.jpg"
+                        }
+                    ]
+                },
+                {
+                    "nama_warna" : "Biru Misty",
+                    "warna" : "",
+                    "warna_image" : "../kaos/warna-kaos2/biru-misty.jpg",
+                    "image" : [
+                        {
+                            "depan" : "../kaos/kaos2-biru_misty-front.jpg",
+                            "belakang" : "../kaos/kaos2-biru_misty-back.jpg"
+                        }
+                    ]
+                }
+            ] 
+        }
+    ]
+
+}
