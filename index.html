@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Latihan Editor Photo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+        .parent {
+            overflow-x: hidden;
+            margin-left:50px;
+        }
+        .editor, .image {
+            min-height: 400px;
+            margin: 15px 2px 15px 2px;
+        }
+        .menu-editor {
+            margin-top: 15px;
+        }
+        .tambah-text-row, .ganti-produk-row {
+            margin-top: 15px;
+        }
+        .preview-warna {
+            float:right;
+            margin-right: 100px;
+            width: 30px;
+            height: 30px;
+            background: #ff0000;
+            margin-bottom: 3px;
+            border:1px solid #000;
+        }
+        .preview-warna:hover {
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="js/color-picker/color-picker.min.css">
+</head>
+<body>
+    <div class="parent">
+        <div class="row">
+            <div class="col-md-auto image">
+                <div id="wrap-canvas">
+                    <img src="images/aqXeYGBKQnW6BDa2WQ2n.png" style="height: auto; width: 450px;">
+                    <canvas id="canvas" style="z-index: 9999 !important;position: relative;position: absolute;top:60px;left:135px;width: 195px;height: 280px;"></canvas>
+                </div>
+            </div>
+            <div class="col-7 editor border border-primary">
+                <div class="menu-editor">
+
+                    <!-- Tabs Menu Editor -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tambahkekeranjang-tab" data-toggle="tab" href="#tambahkekeranjang" role="tab" aria-controls="tambahkekeranjang" aria-selected="true">
+                                Tambah Ke Keranjang
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="gantiproduk-tab" data-toggle="tab" href="#gantiproduk" role="tab" aria-controls="gantiproduk" aria-selected="true">
+                                Ganti Produk
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tambahtext-tab" data-toggle="tab" href="#tambahtext" role="tab" aria-controls="tambahtext" aria-selected="false">
+                                Tambah Text
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tambahgambar-tab" data-toggle="tab" href="#tambahgambar" role="tab" aria-controls="tambahgambar" aria-selected="false">
+                                Tambah Gambar
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="myTabContent">
+
+                        <!-- Tambah Ke Keranjang -->
+                        <div class="tab-pane fade show active" id="tambahkekeranjang" role="tabpanel" aria-labelledby="tambahkekeranjang-tab">
+                            Tambah Ke Keranjang
+                        </div>
+
+                        <!-- Ganti Produk -->
+                        <div class="tab-pane fade" id="gantiproduk" role="tabpanel" aria-labelledby="gantiproduk-tab">
+                            <div class="row ganti-produk-row">
+                                <div class="col">
+
+                                </div>
+                            </div> 
+                        </div>
+                        
+                        <!-- Tambah Text -->
+                        <div class="tab-pane fade" id="tambahtext" role="tabpanel" aria-labelledby="tambahtext-tab">
+                            <div class="row tambah-text-row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="addtext" placeholder="Text.."/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row tambah-text-row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Kategori Font :</label>  
+                                        <select class="form-control">
+                                            <option>Kategori Font</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Warna Font :</label>  
+                                        <select class="form-control">
+                                            <option>Pilih Font..</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label class="left">Warna Font :</label>
+                                    <div class="preview-warna right" id="warna-font"></div>
+                                    <input placeholder="Warna Font" class="form-control" type="text" id="color-picker" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary col">Tambah</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tambah Gambar -->
+                        <div class="tab-pane fade" id="tambahgambar" role="tabpanel" aria-labelledby="tambahgambar-tab">
+                            Tambah Gambar
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="js/jquery-2.0.2.min.js"></script> -->
+    <script src="js/modernizr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <script src="js/color-picker/color-picker.min.js"></script>
+    
+    <script>
+        // var picker = new CP(document.getElementById("color-picker"));
+        var picker_font = new CP(document.getElementById("warna-font"));
+        // picker.on("change", function(color) {
+        //     this.target.value = '#' + color;
+        //     $("#warna-font").css({"background":"#" +color});
+        // });
+        picker_font.on("change", function(color) {
+            document.getElementById("color-picker").value = '#' + color;
+            $("#warna-font").css({"background":"#" +color});
+        });
+    </script>
+
+    <script>
+        $('document').ready(function(){
+            var canvas = $("#canvas")[0];
+            var ctx = canvas.getContext("2d");
+
+            init();
+
+            function init() {
+                
+                // ctx.strokeStyle = '#00f'; // Warna Biru
+                // ctx.lineWidth = 5;
+
+                // ctx.strokeRect(10,10,10,10);
+                // ctx.fill();
+                // ctx.stroke();
+            }
+
+            $('#canvas')
+            .mouseup(function() {
+                $( this ).css({"border":"none"});
+            })
+            .mousedown(function() {
+                $( this ).css({"border":"3px dotted #1778af"});
+            });
+
+        });
+    </script>
+</body>
+</html>
