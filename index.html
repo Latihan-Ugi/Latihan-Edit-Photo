@@ -201,7 +201,7 @@
                                     <div class="form-group">
                                         <label>Warna Font :</label>  
                                         <select class="form-control" id="jenis-font">
-                                            <option>Pilih Font..</option>
+                                            <option value="">Pilih Font..</option>
                                             <option value="Arial">Arial</option>
                                             <option value="Comic Sans MS">Comic Sans MS</option>
                                             <option value="Impact">Impact</option>
@@ -365,6 +365,9 @@
                 var text = $("#addtext").val();
                 var colortext = $("#color-picker").val();
                 var font = $('#jenis-font option:selected').val();
+                if(font === "")
+                    font = 'arial';
+
                 // console.log(text);
                 ctx.fillStyle = colortext;
                 ctx.font = 'normal bold 40px '+font;
