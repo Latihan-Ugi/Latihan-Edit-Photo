@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Latihan Editor Photo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <style>
         .parent {
             overflow-x: hidden;
@@ -51,6 +52,30 @@
             cursor: pointer;
         }
         
+        .wrap-warna:hover, .wrap-ukuran:hover {
+            cursor: pointer;
+        }
+
+        .warna-active:hover, .ukuran-active:hover {
+            cursor: default !important;
+        }
+
+        .warna-active {
+            bottom: 9px;
+            position: relative;
+        }
+
+        .ukuran-active {
+            background: #555555 !important;
+            color:#fff;
+        }
+
+        .wrap-ukuran span {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px;
+        }
+
         .active-view {
             border:1px solid #000;
             cursor: default !important;
@@ -122,17 +147,23 @@
                                     <span id="harga-produk" style="color:#f25c27;font-size: 20px;font-weight: 500;"></span>
                                     <br>
                                     <div class="warna" style="margin-top: 15px">
-                                        <span>Pilih Warna : </span><span id="nama-warna" style="font-size: 13px;">Merah</span>
-                                        <div class="pilihan-warna" style="margin-top: 5px;">
-                                            <div class="warna" style="display:inline-table; height: 35px; width: 35px; background: red;border-radius: 50%;border:1px solid #000;"></div>
-                                            <div class="warna" style="display:inline-table; height: 35px;width: 35px;background: blueviolet;border-radius: 50%;border:1px solid #000;"></div>                                        
-                                            <div class="warna" style="display:inline-table; height: 35px;width: 35px;background: brown;border-radius: 50%;border:1px solid #000;"></div>                                                                                                                        
+                                        <span>Pilih Warna : </span><span id="nama-warna" style="font-size: 13px;"></span>
+                                        <div class="pilihan-warna" id="pilihan-warna" style="margin-top: 5px;">
+
                                         </div>
                                     </div>
                                     <div class="ukuran" style="margin-top: 15px">
                                         <span>Pilih Ukuran : </span>
                                         <div class="pilihan-ukuran" style="margin-top: 5px">
-
+                                            <div class="wrap-ukuran ukuran-active" style="display:inline-table; height: 30px; width: 30px; border-radius: 10px;border:1px solid rgb(68, 68, 68);">
+                                                <span>L</span>
+                                            </div>
+                                            <div class="wrap-ukuran" style="display:inline-table; height: 30px; width: 30px; border-radius: 10px;border:1px solid rgb(68, 68, 68);">
+                                                <span>XL</span>
+                                            </div>
+                                            <div class="wrap-ukuran" style="display:inline-table; height: 30px; width: 30px; border-radius: 10px;border:1px solid rgb(68, 68, 68);">
+                                                <span>M</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -222,19 +253,21 @@
             $.getJSON( "http://latihan-edit-photo/data-json/kaos.json", function( data ) {
 
                 // console.log(data.produk[0].warna_baju[0].image[0].depan)
-                $("#nama-produk").text(data.produk[0].nama_produk);
-                $("#harga-produk").text(data.produk[0].harga_produk);
+                var produk = data.produk[0];
+
+                $("#nama-produk").text(produk.nama_produk);
+                $("#harga-produk").text(produk.harga_produk);
 
                 $( "<img>", {
-                    "src": data.produk[0].warna_baju[0].image[0].depan
+                    "src": produk.warna_baju[0].image[0].depan
                 }).appendTo( "#img-produk" );
 
                  $( "<img>", {
-                    "src": data.produk[0].warna_baju[0].image[0].belakang
+                    "src": produk.warna_baju[0].image[0].belakang
                 }).appendTo( "#belakang" );
 
                  $( "<img>", {
-                    "src": data.produk[0].warna_baju[0].image[0].depan
+                    "src": produk.warna_baju[0].image[0].depan
                 }).appendTo( "#depan" );
 
                 $("#depan").click(function(){
@@ -243,7 +276,7 @@
                     $('.depan').addClass('active-view');
                     $( "#img-produk > img" ).remove();
                     $( "<img>", {
-                        "src": data.produk[0].warna_baju[0].image[0].depan
+                        "src": produk.warna_baju[0].image[0].depan
                     }).appendTo( "#img-produk" );
                 });
 
@@ -253,12 +286,65 @@
                     $('.belakang').addClass('active-view');
                     $( "#img-produk > img" ).remove();
                     $( "<img>", {
-                        "src": data.produk[0].warna_baju[0].image[0].belakang
+                        "src": produk.warna_baju[0].image[0].belakang
                     }).appendTo( "#img-produk" );
                 });
+                
+                var pilihan_warna = "";
+                $.each(produk.warna_baju, function(i, value){
+                    // console.log(value.warna);
+                    var active = "";
+                    if(i === 0){
+                        active += 
+                        '<div class="wrap-warna warna-active" onclick="pilihwarna(&#x27;'+value.nama_warna+'&#x27;)" style="display:inline-table; height: 35px; width: 35px; border-radius: 50%;background:'+value.warna+';border:1px solid rgb(68, 68, 68);margin-right:7px;">'+
+                        '<span class="fa fa-check" style="font-size: 25px;padding: 3px;color:#fff;-webkit-text-stroke-width: 1px;-webkit-text-stroke-color: black;"></span>';
+                    } else {
+                        active +=
+                        '<div class="wrap-warna" onclick="pilihwarna(&#x27;'+value.nama_warna+'&#x27;)" style="display:inline-table; height: 35px; width: 35px; border-radius: 50%;background:'+value.warna+';border:1px solid rgb(68, 68, 68);margin-right:7px;">';
+                    }
+
+                    pilihan_warna += 
+                        ''+active+''+
+                        '</div>';
+                })
+                
+                $('#nama-warna').text(produk.warna_baju[0].nama_warna)
+                $("#pilihan-warna").append(pilihan_warna);
 
             });
+
         })
+    </script>
+
+    <script>
+        function pilihwarna(warna) {
+            // console.log(warna);
+            $.getJSON( "http://latihan-edit-photo/data-json/kaos.json", function( data ) {
+                $.each(data.produk[0].warna_baju, function(i, value){
+                    if(value.nama_warna === warna){
+                        
+                        $( "#img-produk > img" ).remove();
+
+                        $( "#depan > img" ).remove();
+
+                        $( "#belakang > img" ).remove();
+                        
+                        $( "<img>", {
+                            "src": value.image[0].depan
+                        }).appendTo( "#img-produk" );
+
+                        $( "<img>", {
+                            "src": value.image[0].belakang
+                        }).appendTo( "#belakang" );
+
+                        $( "<img>", {
+                            "src": value.image[0].depan
+                        }).appendTo( "#depan" );
+                    }
+                })
+            })
+
+        }
     </script>
 
     <script>
