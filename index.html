@@ -427,11 +427,13 @@
 
                 text_.on('mousedown', function(e) { 
                         // e.target should be the circle
-                        console.log(e.target);
+                        console.log(e.target.text);
+                        $("#addtext").val(e.target.text);
+
                     });
 
-                text_.tabIndex = 1000;
-                text_.addEventListener("keydown", myfunc, false);
+                // text_.tabIndex = 1000;
+                // text_.addEventListener("keydown", myfunc, false);
 
             })
 
