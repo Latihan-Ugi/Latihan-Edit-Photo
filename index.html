@@ -447,12 +447,14 @@
                 // ctx.stroke();
             }
 
-            $('#place-canvas')
+            $('.upper-canvas')
             .mouseup(function() {
                 $( this ).css({"border":"none"});
+                // $("#canvas").removeClass('border border-primary')
             })
             .mousedown(function() {
                 $( this ).css({"border":"3px dotted #1778af"});
+                // $("#canvas").addClass('border border-primary')
             });
 
         });
