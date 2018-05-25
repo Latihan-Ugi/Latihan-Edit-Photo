@@ -407,15 +407,32 @@
                 var text = $("#addtext").val();
                 var colortext = $("#color-picker").val();
                 var font = $('#jenis-font option:selected').val();
-                if(font === "")
-                    font = 'arial';
+                // if(font === "")
+                //     font = 'arial';
 
                 // console.log(text);
-                ctx.fillStyle = colortext;
-                ctx.font = 'normal bold 40px '+font;
-                ctx.textBaseline = 'top';
+                // ctx.fillStyle = colortext;
+                // ctx.font = 'normal bold 40px '+font;
+                // ctx.textBaseline = 'top';
                 // ctx.textAlign = 'center';
-                ctx.fillText(text, 50, 10);
+                // ctx.fillText(text, 50, 10);
+                
+                var text_ = new fabric.Text(text, {
+                    fontFamily: font, // jenis font
+                    stroke: colortext, // outline
+                    fill:colortext // font color
+                });
+                
+                c.add(text_);
+
+                text_.on('mousedown', function(e) { 
+                        // e.target should be the circle
+                        console.log(e.target);
+                    });
+
+                text_.tabIndex = 1000;
+                text_.addEventListener("keydown", myfunc, false);
+
             })
 
             function init() {
@@ -427,13 +444,6 @@
                 // ctx.fill();
                 // ctx.stroke();
             }
-
-            var comicSansText = new fabric.Text("I'm in Comic Sans", {
-                fontFamily: 'Comic Sans'
-            });
-            
-            c.add(comicSansText);
-
 
             $('#place-canvas')
             .mouseup(function() {
