@@ -39,7 +39,11 @@
         }
 
         #place-canvas{
-            width: 244px;
+            position: relative;
+            left: 135px;
+            top: 60px;
+            width: 220px;
+            height: 300px;
         }
 
         .depan img, .belakang img {
@@ -89,7 +93,7 @@
                 <div id="wrap-canvas">
                     <div id="img-produk">
                         <div id="place-canvas">
-                            <canvas id="canvas"></canvas>
+                            <canvas id="canvas"  width="220" height="300"></canvas>
                         </div>
                     </div>
                 </div>
@@ -431,7 +435,7 @@
             c.add(comicSansText);
 
 
-            $('#canvas')
+            $('#place-canvas')
             .mouseup(function() {
                 $( this ).css({"border":"none"});
             })
