@@ -32,15 +32,14 @@
         .preview-warna:hover {
             cursor: pointer;
         }
-
-        #img-produk img {
-            height: auto; 
-            width: 450px;
-        }
         
         .depan, .belakang {
             padding-top: 10px;
             padding-bottom: 10px;
+        }
+
+        #place-canvas{
+            width: 244px;
         }
 
         .depan img, .belakang img {
@@ -88,9 +87,11 @@
         <div class="row">
             <div class="col-md-auto image">
                 <div id="wrap-canvas">
-                    <div id="img-produk"></div>
-                    <!-- <img src="images/aqXeYGBKQnW6BDa2WQ2n.png"> -->
-                    <canvas id="canvas" style="z-index: 9999 !important;position: relative;position: absolute;top:60px;left:135px;width: 195px;height: 280px;"></canvas>
+                    <div id="img-produk">
+                        <div id="place-canvas">
+                            <canvas id="canvas"></canvas>
+                        </div>
+                    </div>
                 </div>
                 <div class="posisi" style="margin-top:15px;">
                     <div class="container">
@@ -199,7 +200,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>Warna Font :</label>  
+                                        <label>Jenis Font :</label>  
                                         <select class="form-control" id="jenis-font">
                                             <option value="">Pilih Font..</option>
                                             <option value="Arial">Arial</option>
@@ -241,6 +242,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
     <script src="js/color-picker/color-picker.min.js"></script>
+    <script src="js/fabric.min.js"></script>
     
     <script>
         // var picker = new CP(document.getElementById("color-picker"));
@@ -265,9 +267,16 @@
                 $("#nama-produk").text(produk.nama_produk);
                 $("#harga-produk").text(produk.harga_produk);
 
-                $( "<img>", {
-                    "src": produk.warna_baju[0].image[0].depan
-                }).appendTo( "#img-produk" );
+                // $( "<img>", {
+                //     "src": produk.warna_baju[0].image[0].depan
+                // }).appendTo( "#img-produk" );
+
+                $("#img-produk").css({
+                    'background':'url('+produk.warna_baju[0].image[0].depan+') no-repeat',
+                    'background-size': 'cover', 
+                    'width': 'auto',
+                    'height': '437px'
+                });
 
                  $( "<img>", {
                     "src": produk.warna_baju[0].image[0].belakang
@@ -277,24 +286,52 @@
                     "src": produk.warna_baju[0].image[0].depan
                 }).appendTo( "#depan" );
 
+                var newbg = $("#img-produk");
+
                 $("#depan").click(function(){
                     // console.log("depan");
                     $('.belakang').removeClass('active-view');
                     $('.depan').addClass('active-view');
-                    $( "#img-produk > img" ).remove();
-                    $( "<img>", {
-                        "src": produk.warna_baju[0].image[0].depan
-                    }).appendTo( "#img-produk" );
+                    // $( "#img-produk > img" ).remove();
+
+                    // $("#img-produk").css({
+                    //     'background':''
+                    // });
+                    
+                    $("#img-produk").css({
+                        'background':'url('+produk.warna_baju[0].image[0].depan+') no-repeat',
+                        'background-size': 'cover', 
+                        'width': 'auto',
+                        'height': '437px'
+                    });
+
+                    // newbg.show();
+
+                    // $( "<img>", {
+                    //     "src": produk.warna_baju[0].image[0].depan
+                    // }).appendTo( "#img-produk" );
                 });
 
                 $("#belakang").click(function(){
                     // console.log("belakang");
                     $('.depan').removeClass('active-view');
                     $('.belakang').addClass('active-view');
-                    $( "#img-produk > img" ).remove();
-                    $( "<img>", {
-                        "src": produk.warna_baju[0].image[0].belakang
-                    }).appendTo( "#img-produk" );
+                    // $( "#img-produk > img" ).remove();
+                    // $("#img-produk").css({
+                    //     'background':''
+                    // });
+
+                    $("#img-produk").css({
+                        'background':'url('+produk.warna_baju[0].image[0].belakang+') no-repeat',
+                        'background-size': 'cover', 
+                        'width': 'auto',
+                        'height': '437px'
+                    });
+                    
+                    // newbg.show();
+                    // $( "<img>", {
+                    //     "src": produk.warna_baju[0].image[0].belakang
+                    // }).appendTo( "#img-produk" );
                 });
                 
                 var pilihan_warna = "";
@@ -358,6 +395,7 @@
         $('document').ready(function(){
             var canvas = $("#canvas")[0];
             var ctx = canvas.getContext("2d");
+            var c = new fabric.Canvas('canvas');
 
             init();
 
@@ -386,6 +424,11 @@
                 // ctx.stroke();
             }
 
+            var comicSansText = new fabric.Text("I'm in Comic Sans", {
+                fontFamily: 'Comic Sans'
+            });
+            
+            c.add(comicSansText);
 
 
             $('#canvas')
